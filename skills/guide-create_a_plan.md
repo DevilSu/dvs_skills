@@ -14,6 +14,7 @@ A standardized blueprint for writing technical specifications, software design d
   - [<span style="color: #81A1C1;">1.6 Paragraph Spacing Standard</span>](#16-paragraph-spacing-standard)
   - [<span style="color: #81A1C1;">1.7 Plain-Text Math & Calculations</span>](#17-plain-text-math--calculations)
   - [<span style="color: #81A1C1;">1.8 Verification Completion Tagging Standard (`YYYY-MM-DD HH:MM:SS`)</span>](#18-verification-completion-tagging-standard-yyyy-mm-dd-hhmmss)
+  - [<span style="color: #81A1C1;">1.9 Relative Repository Paths & In-Scope Links Standard</span>](#19-relative-repository-paths--in-scope-links-standard)
 - [<span style="color: #88C0D0;">**2. Mandatory Document Structure**</span>](#2-mandatory-document-structure)
   - [<span style="color: #81A1C1;">2.1 Title, Subtitle & Document Metadata Table</span>](#21-title-subtitle--document-metadata-table)
   - [<span style="color: #81A1C1;">2.2 Table of Contents (TOC)</span>](#22-table-of-contents-toc)
@@ -114,6 +115,12 @@ All critical keywords, core concepts, subsystem blocks, and key numbers througho
 - **Timestamp Syntax**: Formatted as pure date and time without brackets or prefixes: `YYYY-MM-DD HH:MM:SS` (e.g., `<span style="color: #A3BE8C;">**2026-09-19 20:44:21**</span>`).
 - **Placement**: Placed inside the `Status` column of the verification table in Section 6.
 
+### <span style="color: #81A1C1;">**1.9 Relative Repository Paths & In-Scope Links Standard**</span>
+- **Strictly Relative Paths**: All file paths and markdown links in any plan document (`.md`) must be written as **strictly relative repository paths** (e.g., `[overall.md](overall.md)`, `[summary.md](../dummy_audio_PL_to_PS/summary.md)`, `../../hw/common/board_files`).
+- **Prohibition of Absolute Paths & URIs**: **NEVER** use absolute filesystem paths (e.g., `/home/username/...`, `C:\Users\...`) or URI schemes (e.g., `file:///home/...`).
+- **Rationale**: Absolute paths are outside repository scope. They break project portability across different developer machines, fail to render as clickable links when pushed to GitHub/GitLab, and leak local environment usernames and directory layouts.
+- **Portability Verification**: Every link in a document must resolve cleanly relative to the document's location on disk or the repository root.
+
 ---
 
 ## <span style="color: #88C0D0;">**2. Mandatory Document Structure**</span>
@@ -154,6 +161,7 @@ State the document title, subtitle with `Filename:`, and metadata formatted as a
 - **Sources**:
   - A bulleted list with links to websites, documentation, tickets, or references.
   - **Important Rule**: This section must contain **only links and materials explicitly provided by the user**. Do **not** populate this with links discovered independently during autonomous research.
+  - **Strictly Relative In-Scope Links**: All repository file references must be relative paths within the repository (e.g. `[phase_1.md](phase_1.md)`, `[summary.md](../dummy_audio_PL_to_PS/summary.md)`). Never use absolute paths (`/home/...`) or URI schemes (`file://...`).
   - **Do NOT include the planning guide itself**: `guide-create_a_plan.md` is an internal authoring guide and must **never** be listed in the Sources section.
 
 ### <span style="color: #81A1C1;">**2.4 Section 2: High-Level Architecture & Flowchart (ASCII)**</span>

@@ -7,10 +7,16 @@ A curated collection of technical blueprints, guides, and engineering standards 
 ```text
 dvs_skills/
 ├── README.md
+├── rules/
+│   └── git.md
 └── skills/
     ├── guide-create_a_plan.md
     └── guide-hls_pipeline.md
 ```
+
+## 📋 Rules & Development Standards
+
+- **[Git Commit & Push Confirmation Rule](rules/git.md)**: Mandatory requirement to always ask for explicit user confirmation before executing any `git commit` or `git push` commands.
 
 ## 📚 Guides Included
 

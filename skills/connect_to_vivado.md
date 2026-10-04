@@ -50,7 +50,7 @@
 > [!IMPORTANT]
 > **MANDATORY AGENT BEHAVIOR WHEN USER POINTS TO THIS FILE:**
 >
-> Whenever the user references, opens, or asks to use [`connect_to_vivado.md`](file:///home/devilsu/Desktop/share_512GB/FPGA/notes/dvs_skills/skills/connect_to_vivado.md), the AI assistant **MUST immediately prompt the user** using `ask_question` (or direct text prompt) to specify which MCP server mode they wish to work with:
+> Whenever the user references, opens, or asks to use [`connect_to_vivado.md`](connect_to_vivado.md), the AI assistant **MUST immediately prompt the user** using `ask_question` (or direct text prompt) to specify which MCP server mode they wish to work with:
 >
 > - <span style="color: #88C0D0;">**Option 1 (Recommended for Visual Design): `vivado-gui` (Interactive GUI Mode)**</span>:
 >   - *Use when*: You have the Vivado application open on your desktop, and want the assistant to inspect block designs graphically, highlight nets, open schematics, or program hardware over JTAG.
