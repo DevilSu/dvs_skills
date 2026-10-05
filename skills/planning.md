@@ -37,6 +37,11 @@
 >
 > **3. Mandatory Pre-Submission Rendering Quality Check:**
 > The assistant **MUST verify formatting and rendering before showing any markdown document**. Strictly prohibit unrendered LaTeX math syntax (`$$...$$`, `$...$`, `\frac`, `\approx`, `\times`). Always write mathematical formulas and calculations in clean, readable plain text. Verify tables, ASCII diagrams, and code fences render flawlessly prior to presenting to the user.
+>
+> <br>
+>
+> **4. Mandatory Closing Prompt for Plan Updates:**
+> If any discussion, explanation, or planning session yields decisions, parameters, or insights that affect a plan's `.md` file, the assistant **MUST explicitly ask the user at the end of the response** whether to update the corresponding plan `.md` file.
 
 ---
 

@@ -42,3 +42,16 @@ Before performing any Git commit or push:
 
 4. **Execute Only Upon Approval**:
    - Only execute `git commit` and `git push` after confirmation is granted.
+
+---
+
+## 4. Authorized Shorthand (`acp`)
+
+> [!TIP]
+> **User Command: `acp` (Add, Commit, and Push)**
+> When DVS explicitly sends `acp`, this acts as pre-approved authorization to:
+> 1. Stage all relevant modifications (`git add`).
+> 2. Commit with a concise Conventional Commit message (`git commit`).
+> 3. Push immediately to the remote branch (`git push`).
+>
+> Reference: [`how_to_talk_to_dvs.md`](how_to_talk_to_dvs.md).
