@@ -44,7 +44,21 @@
 
 ---
 
-## 3. Plan Update Prompting Rule: Ask at End of Response
+## 3. Mermaid Diagram Validation & Rendering Rule (`RULE-MERMAID-001`)
+
+> [!IMPORTANT]
+> **All Mermaid diagrams (` ```mermaid `) MUST be verified to render cleanly without syntax errors.**
+> Broken Mermaid blocks containing unquoted brackets in edge labels, unquoted parentheses in node boxes, or invalid subgraph identifiers cause fatal parser failures in the editor and web previews.
+
+### Guidelines:
+1. **Double-Quote Special Characters in Node Labels**: Any label with `()`, `[]`, `/`, `+`, `-`, or `<br/>` must be double-quoted: `NODE["Label (Info)"]`.
+2. **Double-Quote Special Characters in Edge Labels**: Always quote edge text with brackets or math: `-->|"pdm_in [NUM_CHANNELS-1:0]"|`.
+3. **Clean Subgraph Syntax**: Use alphanumeric IDs without dots or spaces: `subgraph ID ["Display Title"]`.
+4. Detailed standard: See [`mermaid.md`](mermaid.md).
+
+---
+
+## 4. Plan Update Prompting Rule: Ask at End of Response
 
 > [!IMPORTANT]
 > **If any technical discussion, explanation, clarification, or planning session yields findings, architecture decisions, or parameter refinements that affect a plan's `.md` file, the assistant MUST explicitly ask DVS at the very end of the response whether to update the corresponding plan `.md` file.**
@@ -61,7 +75,7 @@
 
 ---
 
-## 4. DVS User Shorthand & Shortnames Glossary
+## 5. DVS User Shorthand & Shortnames Glossary
 
 To streamline interactive chat workflows, DVS uses standardized shortnames that the assistant must immediately recognize and execute:
 
@@ -72,7 +86,7 @@ To streamline interactive chat workflows, DVS uses standardized shortnames that 
 
 ---
 
-## 5. Rule Ingestion Protocol (Adding Rules in the Future)
+## 6. Rule Ingestion Protocol (Adding Rules in the Future)
 
 Whenever DVS instructs the assistant to **add, modify, or update a rule**, the assistant must strictly follow this protocol:
 
@@ -117,17 +131,19 @@ Whenever DVS instructs the assistant to **add, modify, or update a rule**, the a
 
 ---
 
-## 6. Master Index of Rules in `rules/`
+## 7. Master Index of Rules in `rules/`
 
 | Rule ID | File | Description | Status |
 | :--- | :--- | :--- | :--- |
 | `RULE-TALK-001` | [`how_to_talk_to_dvs.md`](how_to_talk_to_dvs.md) | **(Root File)** Response length threshold (>3 paragraphs -> `.md` tab), zero unrendered LaTeX, plan update prompts, and DVS shortnames glossary (`addr cmt`, `acp`). | **Active** |
+| `RULE-MERMAID-001` | [`mermaid.md`](mermaid.md) | Mandatory syntax validation for Mermaid diagrams (double-quoted special characters, quoted edge labels, clean subgraphs) to prevent rendering failures. | **Active** |
 | `RULE-GIT-001` | [`git.md`](git.md) | Mandatory explicit confirmation before executing `git commit` or `git push` (authorized via `acp`). | **Active** |
+| `RULE-REPO-001` | [`repo_structure.md`](repo_structure.md) | Standard tripartite Subproject-Driven Repository Architecture (`blueprints/`, `hw/`, `sw/`) modeled after `mic_arr_v2`. | **Active** |
 | `DIR-PLAN-001` | [`../skills/planning.md`](../skills/planning.md) | Mandatory interactive chat alignment and commentable `.md` artifacts before modifying plans. | **Active** |
 
 ---
 
-## 7. Repository Link Standards
+## 8. Repository Link Standards
 
 - All links within rules and documentation must be **strictly relative repository paths** (e.g. `rules/git.md`, `../skills/planning.md`) so they render seamlessly on GitHub and across local clones.
 - Math must be formatted as **plain text** without unrendered LaTeX delimiters (`$`, `$$`, `\frac`).

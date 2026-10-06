@@ -59,9 +59,11 @@ All document titles, subtitles, main sections, and subsections **must be both bo
   `# <span style="color: #88C0D0;">**[System / Feature Name]**</span>`
 - **Document Subtitle (`###`)**: Immediately below the title, provide a subtitle showing the exact file name using `Filename:`:
   `### <span style="color: #81A1C1;">**Filename:** `filename.md`</span>`
-- **Plan File Naming Convention**:
-  - **Overall Architecture Plan**: For multi-phase initiatives, name the master overview plan `<project_name>_overall.md`.
-  - **Phase-by-Phase Milestone Plans**: For each individual implementation phase or milestone, create a dedicated execution plan named `<project_name>_phase_<N>.md` (e.g., `<project_name>_phase_1.md`, `<project_name>_phase_2.md`).
+- **Plan File Naming Convention & Directory Location**:
+  - **Repository Architecture Standard**: Aligned with `RULE-REPO-001` (`rules/repo_structure.md`). All blueprint files must reside inside `blueprints/<subproject_name>/`.
+  - **Master Architecture Blueprint**: For multi-phase initiatives, name the master overview plan `overall.md` located at `blueprints/<subproject_name>/overall.md`.
+  - **Phase-by-Phase Milestone Plans**: For each individual execution phase, create a dedicated execution blueprint named `phase_<N>.md` (e.g., `blueprints/<subproject_name>/phase_1.md`, `phase_2.md`).
+  - **Post-Execution Summary**: Upon phase sign-off and verification, compile the final retrospective, register maps, and benchmarks into `blueprints/<subproject_name>/summary.md`.
   - **Filename Parity**: The `Filename:` subtitle in the markdown header must strictly match the filename on disk.
 - **Main Sections (`##`)**: `## <span style="color: #88C0D0;">**[N. Section Title]**</span>`
 - **Subsections (`###`)**: `### <span style="color: #81A1C1;">**[N.M Subsection Title]**</span>`
@@ -117,6 +119,7 @@ All critical keywords, core concepts, subsystem blocks, and key numbers througho
 
 ### <span style="color: #81A1C1;">**1.9 Relative Repository Paths & In-Scope Links Standard**</span>
 - **Strictly Relative Paths**: All file paths and markdown links in any plan document (`.md`) must be written as **strictly relative repository paths** (e.g., `[overall.md](overall.md)`, `[summary.md](../dummy_audio_PL_to_PS/summary.md)`, `../../hw/common/board_files`).
+- **Dashboard Table Links**: In master or root `readme.md` subproject breakdown tables, display blueprint links as `[Link](blueprints/<subproject>/overall.md)` rather than repeating the redundant filename `overall.md` on every row.
 - **Prohibition of Absolute Paths & URIs**: **NEVER** use absolute filesystem paths (e.g., `/home/username/...`, `C:\Users\...`) or URI schemes (e.g., `file:///home/...`).
 - **Rationale**: Absolute paths are outside repository scope. They break project portability across different developer machines, fail to render as clickable links when pushed to GitHub/GitLab, and leak local environment usernames and directory layouts.
 - **Portability Verification**: Every link in a document must resolve cleanly relative to the document's location on disk or the repository root.
