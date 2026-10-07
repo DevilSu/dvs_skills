@@ -141,6 +141,7 @@ Whenever DVS instructs the assistant to **add, modify, or update a rule**, the a
 | `RULE-REPO-001` | [`repo_structure.md`](repo_structure.md) | Standard tripartite Subproject-Driven Repository Architecture (`blueprints/`, `hw/`, `sw/`) modeled after `mic_arr_v2`. | **Active** |
 | `RULE-EVID-001` | [`backup_evidences.md`](backup_evidences.md) | Mandatory empirical evidence logging in `blueprints/<subproject>/backup_evidences.md` after completing any implementation step. Shared across all phases. | **Active** |
 | `RULE-HW-001` | [`hardware_architecture.md`](hardware_architecture.md) | FPGA clock infrastructure decoupling, non-blocking real-time sensor streaming, and vendor IP catalog reuse. | **Active** |
+| `RULE-HYGIENE-001` | [`codebase_hygiene.md`](codebase_hygiene.md) | Mandatory immediate decommissioning of superseded artifacts upon refactoring, zero orphaned code, and cross-document reference sweeps. | **Active** |
 | `DIR-PLAN-001` | [`../skills/planning.md`](../skills/planning.md) | Mandatory interactive chat alignment and commentable `.md` artifacts before modifying plans. | **Active** |
 
 ---

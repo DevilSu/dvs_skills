@@ -52,6 +52,11 @@
 >
 > **6. Mandatory Hardware & Streaming Architecture Rules (`RULE-HW-001`):**
 > When planning FPGA, DSP, or physical sensor ingestion pipelines, the assistant MUST decouple clock generation from leaf processing modules (clocks belong strictly to top-level infrastructure / vendor IP blocks), enforce non-blocking real-time streaming at physical interfaces, and place elasticity buffers strictly downstream after decimation / rate reduction.
+>
+> <br>
+>
+> **7. Mandatory Obsolete Artifact Decommissioning (`RULE-HYGIENE-001`):**
+> When a plan modification, step redo, or architectural refactor replaces an earlier design, the assistant **MUST decommission obsolete source files immediately** (`git rm`) in the same commit and execute a codebase-wide grep to eradicate stale references from blueprints, block designs, and testbenches, ensuring zero dead code.
 
 ---
 
@@ -100,5 +105,6 @@ Whenever a user requests to plan a project, subproject, or phase:
 - **Styling & Structure**: [guide-create_a_plan.md](guide-create_a_plan.md)
 - **Step Verification Evidence**: [backup_evidences.md](../rules/backup_evidences.md)
 - **FPGA & Streaming Architecture**: [hardware_architecture.md](../rules/hardware_architecture.md)
+- **Codebase Hygiene & Refactoring**: [codebase_hygiene.md](../rules/codebase_hygiene.md)
 - **Repository Architecture**: [repo_structure.md](../rules/repo_structure.md)
 - **Version Control Rules**: [git.md](../rules/git.md)
