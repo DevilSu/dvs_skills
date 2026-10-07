@@ -42,6 +42,16 @@
 >
 > **4. Mandatory Closing Prompt for Plan Updates:**
 > If any discussion, explanation, or planning session yields decisions, parameters, or insights that affect a plan's `.md` file, the assistant **MUST explicitly ask the user at the end of the response** whether to update the corresponding plan `.md` file.
+>
+> <br>
+>
+> **5. Mandatory Implementation Step Evidence Logging (`backup_evidences.md`):**
+> After executing any implementation step defined in a plan, the assistant **MUST provide empirical evidence** proving the step completed correctly (waveforms, timing slack reports, zero-error test logs) and record it inside `blueprints/<subproject_name>/backup_evidences.md` per `RULE-EVID-001`. This document is shared across all phases of the subproject.
+>
+> <br>
+>
+> **6. Mandatory Hardware & Streaming Architecture Rules (`RULE-HW-001`):**
+> When planning FPGA, DSP, or physical sensor ingestion pipelines, the assistant MUST decouple clock generation from leaf processing modules (clocks belong strictly to top-level infrastructure / vendor IP blocks), enforce non-blocking real-time streaming at physical interfaces, and place elasticity buffers strictly downstream after decimation / rate reduction.
 
 ---
 
@@ -77,9 +87,18 @@ Whenever a user requests to plan a project, subproject, or phase:
    - Present the created plan summary to the user.
    - In accordance with [git.md](../rules/git.md), ask the user before staging, committing, or pushing any changes.
 
+5. <span style="color: #EBCB8B;">**Step 5 - Implementation Execution & Empirical Evidence Logging**</span>:
+   - Execute implementation steps incrementally.
+   - Run verification simulation, synthesis, co-sim, or hardware tests.
+   - Per `RULE-EVID-001`, record empirical proof (waveforms, timing slack reports, zero-error testbench logs) in `blueprints/<subproject_name>/backup_evidences.md`.
+   - Update the step's status timestamp in `phase_N.md` and link to `backup_evidences.md`.
+
 ---
 
 ## <span style="color: #88C0D0;">**4. Cross-Reference Standards**</span>
 
 - **Styling & Structure**: [guide-create_a_plan.md](guide-create_a_plan.md)
+- **Step Verification Evidence**: [backup_evidences.md](../rules/backup_evidences.md)
+- **FPGA & Streaming Architecture**: [hardware_architecture.md](../rules/hardware_architecture.md)
+- **Repository Architecture**: [repo_structure.md](../rules/repo_structure.md)
 - **Version Control Rules**: [git.md](../rules/git.md)

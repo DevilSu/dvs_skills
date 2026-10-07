@@ -64,6 +64,7 @@ All document titles, subtitles, main sections, and subsections **must be both bo
   - **Master Architecture Blueprint**: For multi-phase initiatives, name the master overview plan `overall.md` located at `blueprints/<subproject_name>/overall.md`.
   - **Phase-by-Phase Milestone Plans**: For each individual execution phase, create a dedicated execution blueprint named `phase_<N>.md` (e.g., `blueprints/<subproject_name>/phase_1.md`, `phase_2.md`).
   - **Post-Execution Summary**: Upon phase sign-off and verification, compile the final retrospective, register maps, and benchmarks into `blueprints/<subproject_name>/summary.md`.
+  - **Step Verification Evidence Repository (`backup_evidences.md`)**: Aligned with `RULE-EVID-001` ([`backup_evidences.md`](../rules/backup_evidences.md)). After completing every implementation step, concrete empirical evidence (waveforms, logs, timing reports) must be documented in `blueprints/<subproject_name>/backup_evidences.md`. This file is shared across all phase plans in the subproject.
   - **Filename Parity**: The `Filename:` subtitle in the markdown header must strictly match the filename on disk.
 - **Main Sections (`##`)**: `## <span style="color: #88C0D0;">**[N. Section Title]**</span>`
 - **Subsections (`###`)**: `### <span style="color: #81A1C1;">**[N.M Subsection Title]**</span>`
@@ -171,6 +172,7 @@ State the document title, subtitle with `Filename:`, and metadata formatted as a
 - An ASCII block diagram enclosed in a fenced `text` code block showing the end-to-end data, control, or pipeline flow.
 - Clearly delineates subsystems, operational layers, or services (e.g., Ingestion, Core Service, Storage, Client).
 - Shows arrows, directions of flow, protocols, and interfaces.
+- **Hardware & Streaming Architecture Standards**: For FPGA and hardware co-design plans, adhere strictly to `RULE-HW-001` ([`hardware_architecture.md`](../rules/hardware_architecture.md)): clearly decouple clock generation/division into top-level infrastructure (Block Design / vendor IPs), guarantee non-blocking streaming at physical sensor boundaries, and locate elasticity buffering strictly downstream after rate reduction / decimation.
 
 ### <span style="color: #81A1C1;">**2.5 Section 3: Assumptions & Prerequisites**</span>
 Document all required dependencies and assumptions:
@@ -201,6 +203,7 @@ Tabulate test cases with explicit criteria:
 - **Status Column**: Initially set to `<span style="color: #4C566A;">**Planned**</span>`. Once a test or verification step has finished execution and passed, update its Status column with the clean green bold timestamp:
   `<span style="color: #A3BE8C;">**YYYY-MM-DD HH:MM:SS**</span>`
 - Record the concrete verified output in the `Actual Result` column.
+- **Empirical Evidence Requirement (`backup_evidences.md`)**: Aligned with `RULE-EVID-001` ([`backup_evidences.md`](../rules/backup_evidences.md)), every completed implementation step must be backed by empirical evidence (waveforms, timing slack reports, zero-error logs) recorded in `blueprints/<subproject_name>/backup_evidences.md`. The checklist row should link directly to the corresponding anchor in `backup_evidences.md`.
 
 ### <span style="color: #81A1C1;">**2.9 Section 7: Risks, Trade-offs & Mitigation**</span>
 Tabulated matrix of potential failure modes:

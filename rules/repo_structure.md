@@ -30,7 +30,8 @@ Every repository must follow the architectural layout established in `mic_arr_v2
 │   └── <subproject_name>/              # Dedicated directory per major milestone/subproject
 │       ├── overall.md                  # Master architecture blueprint & cross-phase roadmap
 │       ├── phase_1..N.md               # Detailed execution blueprints for individual phases
-│       └── summary.md                  # Post-execution comprehensive report, register maps & benchmarks
+│       ├── summary.md                  # Post-execution comprehensive report, register maps & benchmarks
+│       └── backup_evidences.md         # Empirical verification evidence (waveforms, logs, timing) shared across all phases
 │
 ├── hw/                                 # Hardware designs, RTL, IPs & Overlays
 │   ├── common/                         # Shared board definitions, constraints & global IP catalog
@@ -81,6 +82,7 @@ Every repository's root `readme.md` must include:
 ## 5. References & Cross-Standards
 
 - **Root Hub**: [`how_to_talk_to_dvs.md`](how_to_talk_to_dvs.md)
+- **Step Verification Evidence Standard**: [`backup_evidences.md`](backup_evidences.md)
 - **Plan Specification Guide**: [`../skills/guide-create_a_plan.md`](../skills/guide-create_a_plan.md)
 - **Planning Directive**: [`../skills/planning.md`](../skills/planning.md)
 - **Git Protocol**: [`git.md`](git.md)

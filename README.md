@@ -11,7 +11,9 @@ dvs_skills/
 │   ├── how_to_talk_to_dvs.md
 │   ├── git.md
 │   ├── mermaid.md
-│   └── repo_structure.md
+│   ├── repo_structure.md
+│   ├── backup_evidences.md
+│   └── hardware_architecture.md
 └── skills/
     ├── guide-create_a_plan.md
     ├── guide-hls_pipeline.md
@@ -24,6 +26,8 @@ dvs_skills/
 
 - **[How to Talk to DVS (Root Rules Hub)](rules/how_to_talk_to_dvs.md)**: Master communication rule (>3 paragraphs in formatted editor tabs, zero unrendered LaTeX, closing prompts for plan updates, shortnames glossary `addr cmt` / `acp`) and the ingestion protocol for adding/updating future rules.
 - **[Subproject-Driven Repository Architecture Standard](rules/repo_structure.md)**: Mandatory tripartite architecture (`blueprints/`, `hw/`, `sw/`) isolating hardware/software co-design milestones into mirrored subprojects, modeled after `mic_arr_v2`.
+- **[FPGA Clock Distribution & Streaming Standard](rules/hardware_architecture.md)**: Mandatory clock infrastructure decoupling (leaf modules never synthesize clocks), non-blocking real-time physical sensor streaming, and vendor IP catalog reuse.
+- **[Implementation Step Verification & Backup Evidence Standard](rules/backup_evidences.md)**: Mandatory empirical verification evidence (waveforms, timing slack, zero-error test logs) documented in a single shared `backup_evidences.md` under each subproject blueprint directory after completing any implementation step.
 - **[Mermaid Diagram Validation Rule](rules/mermaid.md)**: Mandatory syntax verification and double-quoting requirements for all Mermaid diagrams to prevent rendering parser failures.
 - **[Git Commit & Push Confirmation Rule](rules/git.md)**: Mandatory requirement to always ask for explicit user confirmation before executing any `git commit` or `git push` commands.
 - **[Pre-Authoring Planning Alignment Directive](skills/planning.md)**: Mandatory requirement to always discuss and align with the user before writing or modifying any `.md` plan files.

@@ -139,6 +139,8 @@ Whenever DVS instructs the assistant to **add, modify, or update a rule**, the a
 | `RULE-MERMAID-001` | [`mermaid.md`](mermaid.md) | Mandatory syntax validation for Mermaid diagrams (double-quoted special characters, quoted edge labels, clean subgraphs) to prevent rendering failures. | **Active** |
 | `RULE-GIT-001` | [`git.md`](git.md) | Mandatory explicit confirmation before executing `git commit` or `git push` (authorized via `acp`). | **Active** |
 | `RULE-REPO-001` | [`repo_structure.md`](repo_structure.md) | Standard tripartite Subproject-Driven Repository Architecture (`blueprints/`, `hw/`, `sw/`) modeled after `mic_arr_v2`. | **Active** |
+| `RULE-EVID-001` | [`backup_evidences.md`](backup_evidences.md) | Mandatory empirical evidence logging in `blueprints/<subproject>/backup_evidences.md` after completing any implementation step. Shared across all phases. | **Active** |
+| `RULE-HW-001` | [`hardware_architecture.md`](hardware_architecture.md) | FPGA clock infrastructure decoupling, non-blocking real-time sensor streaming, and vendor IP catalog reuse. | **Active** |
 | `DIR-PLAN-001` | [`../skills/planning.md`](../skills/planning.md) | Mandatory interactive chat alignment and commentable `.md` artifacts before modifying plans. | **Active** |
 
 ---
