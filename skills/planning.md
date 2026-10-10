@@ -8,8 +8,8 @@
 | <span style="color: #EBCB8B;">**Topic**</span> | Engineering Planning & Specification Workflow |
 | <span style="color: #EBCB8B;">**Author**</span> | devilsu |
 | <span style="color: #EBCB8B;">**Created**</span> | 2026-10-04 13:57 PST |
-| <span style="color: #EBCB8B;">**Modified**</span> | 2026-10-04 13:57 PST |
-| <span style="color: #EBCB8B;">**Version**</span> | v1.0.0 |
+| <span style="color: #EBCB8B;">**Modified**</span> | 2026-10-09 21:15 PST |
+| <span style="color: #EBCB8B;">**Version**</span> | v1.1.0 |
 | <span style="color: #EBCB8B;">**Status**</span> | <span style="color: #A3BE8C;">**Active / Mandatory Directive**</span> |
 
 ---
@@ -57,6 +57,11 @@
 >
 > **7. Mandatory Obsolete Artifact Decommissioning (`RULE-HYGIENE-001`):**
 > When a plan modification, step redo, or architectural refactor replaces an earlier design, the assistant **MUST decommission obsolete source files immediately** (`git rm`) in the same commit and execute a codebase-wide grep to eradicate stale references from blueprints, block designs, and testbenches, ensuring zero dead code.
+>
+> <br>
+>
+> **8. Mandatory Atomic Verification Schema (One Test, One SUT, One Spec, One Result):**
+> When authoring or revising Section 5 (Roadmap) and Section 6 (Checklist) of any blueprint, every verification step must follow the atomic 3-part schema: Implementation Scope, Verification Specification (`SUT`, `Testbench & Runner`, `Input Stimulus`, `Monitored Outputs`, `Test Scenarios`), and Execution Results & Evolution (`Verdict`, `Key Metrics`, `Changes Made to Pass`, `Evidence Anchor`). Never group multiple disparate SUTs or testbenches into a single lumped block; break them down into discrete sub-steps (`Step X.Y.1`, `Step X.Y.2`) with a strict 1-to-1 mapping to Section 6.
 
 ---
 

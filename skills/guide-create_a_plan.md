@@ -22,8 +22,8 @@ A standardized blueprint for writing technical specifications, software design d
   - [<span style="color: #81A1C1;">2.4 Section 2: High-Level Architecture & Flowchart (ASCII)</span>](#24-section-2-high-level-architecture--flowchart-ascii)
   - [<span style="color: #81A1C1;">2.5 Section 3: Assumptions & Prerequisites</span>](#25-section-3-assumptions--prerequisites)
   - [<span style="color: #81A1C1;">2.6 Section 4: Detailed Flow & Component Breakdown</span>](#26-section-4-detailed-flow--component-breakdown)
-  - [<span style="color: #81A1C1;">2.7 Section 5: Step-by-Step Implementation Roadmap</span>](#27-section-5-step-by-step-implementation-roadmap)
-  - [<span style="color: #81A1C1;">2.8 Section 6: Verification & Sign-Off Checklist</span>](#28-section-6-verification--sign-off-checklist)
+  - [<span style="color: #81A1C1;">2.7 Section 5: Step-by-Step Implementation Roadmap & Verification Specifications</span>](#27-section-5-step-by-step-implementation-roadmap--verification-specifications)
+  - [<span style="color: #81A1C1;">2.8 Section 6: Verification & Sign-Off Checklist (1-to-1 Mapping to Section 5)</span>](#28-section-6-verification--sign-off-checklist-1-to-1-mapping-to-section-5)
   - [<span style="color: #81A1C1;">2.9 Section 7: Risks, Trade-offs & Mitigation</span>](#29-section-7-risks-trade-offs--mitigation)
   - [<span style="color: #81A1C1;">2.10 Section 8: Post-Execution Retrospective & Delta Analysis</span>](#210-section-8-post-execution-retrospective--delta-analysis)
 - [<span style="color: #88C0D0;">**3. Diagramming Guidelines (ASCII Block Diagrams)**</span>](#3-diagramming-guidelines-ascii-block-diagrams)
@@ -189,21 +189,51 @@ Document all required dependencies and assumptions:
   where `X` is the current item number and `Y` is the total count of undecided items across the plan (e.g., `1/3`, `2/3`, `3/3`). Do **not** embed it inside a bullet point or attach it to list items—it must be on its own dedicated line, separated by empty lines before and after. Clearly present the available alternatives as indented or distinct options beneath it.
 - **Lifecycle Steps Formatting**: In Section 4.2 (End-to-End Data Lifecycle), each step title (e.g., `<span style="color: #EBCB8B;">**Step N - [Step Title]**</span>`) must be placed **on its own standalone line**, and the operational actions beneath it must be formatted as **bullet points**.
 
-### <span style="color: #81A1C1;">**2.7 Section 5: Step-by-Step Implementation Roadmap**</span>
-Chronological execution checklist broken into logical milestones:
-- **Phase 1: Foundation & Core Domain Logic**
-- **Phase 2: Service / Interface Integration**
-- **Phase 3: Storage, Pipeline & Buffer Management**
-- **Phase 4: End-to-End Verification & Benchmarking**
-- Tasks are tracked using standard markdown checkboxes (`- [ ]` for pending, `- [x]` for completed).
+### <span style="color: #81A1C1;">**2.7 Section 5: Step-by-Step Implementation Roadmap & Verification Specifications**</span>
+Chronological execution roadmap broken into logical milestones or discrete steps (e.g., `Step X.1`, `Step X.2`).
+To ensure absolute engineering rigor and avoid vague planning, **every implementation step must follow a standardized 3-part schema**:
 
-### <span style="color: #81A1C1;">**2.8 Section 6: Verification & Sign-Off Checklist**</span>
-Tabulate test cases with explicit criteria:
-- Acceptance criteria and target metrics.
-- **Status Column**: Initially set to `<span style="color: #4C566A;">**Planned**</span>`. Once a test or verification step has finished execution and passed, update its Status column with the clean green bold timestamp:
-  `<span style="color: #A3BE8C;">**YYYY-MM-DD HH:MM:SS**</span>`
-- Record the concrete verified output in the `Actual Result` column.
-- **Empirical Evidence Requirement (`backup_evidences.md`)**: Aligned with `RULE-EVID-001` ([`backup_evidences.md`](../rules/backup_evidences.md)), every completed implementation step must be backed by empirical evidence (waveforms, timing slack reports, zero-error logs) recorded in `blueprints/<subproject_name>/backup_evidences.md`. The checklist row should link directly to the corresponding anchor in `backup_evidences.md`.
+> [!IMPORTANT]
+> **The Atomic Verification Rule (One Test, One SUT, One Spec, One Result)**:
+> Never group or lump multiple distinct SUTs, testbenches, or disparate verification objectives into a single combined block. If a milestone or task evaluates multiple components or testbenches, you **MUST** break them down into discrete, atomic sub-steps (e.g., `Step X.Y.1`, `Step X.Y.2`).
+> Each individual entry must feature:
+> 1. Exactly **ONE** SUT (System Under Test).
+> 2. Exactly **ONE** Verification Specification (`Testbench & Runner`, `Input Stimulus`, `Monitored Outputs`, `Test Scenarios`).
+> 3. Exactly **ONE** Execution Results & Evolution block (`Verdict`, `Key Metrics`, `Changes Made to Pass`, `Evidence Anchor`).
+> This ensures every component and test case is individually auditable and maps directly 1-to-1 to Section 6.
+
+1. <span style="color: #EBCB8B;">**Implementation Scope**</span>:
+   - Itemize the exact files modified, created, or refactored.
+   - Describe the specific logic, data structures, algorithms, or hardware interfaces implemented.
+
+2. <span style="color: #EBCB8B;">**Verification Specification**</span>:
+   - <span style="color: #EBCB8B;">**SUT (System Under Test)**</span>: The exact module, subsystem, API, or hardware IP under test.
+   - <span style="color: #EBCB8B;">**Testbench & Runner**</span>: The test file, script, or automated runner (e.g., testbench path, shell runner script, or CLI test command).
+   - <span style="color: #EBCB8B;">**Input Stimulus**</span>: The input data, clocks, parameters, transactions, or stress vectors driven into the SUT.
+   - <span style="color: #EBCB8B;">**Monitored Outputs**</span>: The exact output ports, return payloads, flags, registers, or latency metrics evaluated.
+   - <span style="color: #EBCB8B;">**Test Scenarios**</span>: Itemized test cases covering happy path, parametric sweeps, boundary limits, and error/backpressure conditions.
+
+3. <span style="color: #EBCB8B;">**Execution Results & Evolution**</span>:
+   - <span style="color: #EBCB8B;">**Verdict**</span>: Explicit status tag (`PASSED YYYY-MM-DD HH:MM:SS` or `PENDING`).
+   - <span style="color: #EBCB8B;">**Key Metrics**</span>: Quantified empirical results (e.g., error counts, timing slack `WNS > 0`, throughput, SNR dB, test count).
+   - <span style="color: #EBCB8B;">**Changes Made to Pass**</span>: Crucial post-execution retrospective explaining any architectural pivots, bug fixes, algorithmic adaptations, or parameter adjustments made *during implementation* to achieve passing criteria. If an initial approach encountered bottlenecks (e.g., timing violations, protocol mismatches, deadlocks), document why the change was required and what was altered.
+   - <span style="color: #EBCB8B;">**Evidence Anchor**</span>: Direct markdown link to the empirical proof documented in `blueprints/<subproject_name>/backup_evidences.md` per `RULE-EVID-001`.
+
+<br>
+
+### <span style="color: #81A1C1;">**2.8 Section 6: Verification & Sign-Off Checklist (1-to-1 Mapping to Section 5)**</span>
+Section 6 provides a high-visibility, concise dashboard that maintains a **strict 1-to-1 mapping with every step defined in Section 5**.
+Every row in the table directly corresponds to one step in the roadmap, ensuring readers can instantly verify what has been implemented and what remains pending.
+
+The table must use the following standard columns:
+- `<span style="color: #EBCB8B;">**Step #**</span>`: Step identifier matching Section 5 (e.g., `Step 1.1`, `Step 2.1`).
+- `<span style="color: #EBCB8B;">**Subsystem / Task**</span>`: Concise name of the subsystem or engineering task.
+- `<span style="color: #EBCB8B;">**Implementation Scope**</span>`: 1-sentence summary of the implemented logic or changes.
+- `<span style="color: #EBCB8B;">**Primary Verification SUT & Runner**</span>`: Exact SUT module and testbench/runner script.
+- `<span style="color: #EBCB8B;">**Key Pass Criteria**</span>`: Concrete numeric or functional acceptance criteria.
+- `<span style="color: #EBCB8B;">**Status**</span>`: Status tag:
+  - When pending: `<span style="color: #4C566A;">**Planned (Pending Step X.Y)**</span>`
+  - When verified pass: `<span style="color: #A3BE8C;">**PASSED (YYYY-MM-DD HH:MM:SS)**</span>` followed by a direct relative link to the corresponding anchor in `backup_evidences.md` per `RULE-EVID-001`.
 
 ### <span style="color: #81A1C1;">**2.9 Section 7: Risks, Trade-offs & Mitigation**</span>
 Tabulated matrix of potential failure modes:
@@ -300,8 +330,8 @@ Copy and paste the template below when initiating any new `.md` architecture or 
 - [<span style="color: #88C0D0;">**4. Detailed Flow & Component Breakdown**</span>](#4-detailed-flow--component-breakdown)
   - [<span style="color: #81A1C1;">4.1 Component Roles & Responsibilities</span>](#41-component-roles--responsibilities)
   - [<span style="color: #81A1C1;">4.2 End-to-End Data Lifecycle</span>](#42-end-to-end-data-lifecycle)
-- [<span style="color: #88C0D0;">**5. Implementation Roadmap**</span>](#5-implementation-roadmap)
-- [<span style="color: #88C0D0;">**6. Verification & Sign-Off Checklist**</span>](#6-verification--sign-off-checklist)
+- [<span style="color: #88C0D0;">**5. Implementation Roadmap & Verification Specifications**</span>](#5-implementation-roadmap--verification-specifications)
+- [<span style="color: #88C0D0;">**6. Verification & Sign-Off Checklist (1-to-1 Mapping to Section 5)**</span>](#6-verification--sign-off-checklist-1-to-1-mapping-to-section-5)
 - [<span style="color: #88C0D0;">**7. Risks, Trade-offs & Mitigation**</span>](#7-risks-trade-offs--mitigation)
 - [<span style="color: #88C0D0;">**8. Post-Execution Retrospective & Delta Analysis**</span>](#8-post-execution-retrospective--delta-analysis)
 
@@ -420,33 +450,61 @@ Copy and paste the template below when initiating any new `.md` architecture or 
 
 ---
 
-## <span style="color: #88C0D0;">**5. Implementation Roadmap**</span>
+## <span style="color: #88C0D0;">**5. Implementation Roadmap & Verification Specifications**</span>
 
-- [ ] <span style="color: #EBCB8B;">**Phase 1: Foundation & Core Domain Logic**</span>
-  - [ ] Define data models, schemas, and validation contracts
-  - [ ] Implement core domain algorithms and write unit tests
+### <span style="color: #81A1C1;">**5.1 Step 1.1: [Subsystem / Component Initial Milestone]**</span>
 
-- [ ] <span style="color: #EBCB8B;">**Phase 2: Service APIs & Integration**</span>
-  - [ ] Implement controllers, route handlers, and middleware
-  - [ ] Wire service layer with queue publishers and consumers
+#### 1. Implementation Scope:
+- Itemize files modified or created (e.g., `src/...`, `hw/...`).
+- Itemize specific logic, data structures, algorithms, or interfaces added.
 
-- [ ] <span style="color: #EBCB8B;">**Phase 3: Storage & External Adapters**</span>
-  - [ ] Create database migration scripts and seed data
-  - [ ] Integrate external service clients with retry and circuit breakers
+#### 2. Verification Specification:
+- <span style="color: #EBCB8B;">**SUT**</span>: [Name of Module / Class / IP Core under test]
+- <span style="color: #EBCB8B;">**Testbench & Runner**</span>: [Testbench path / test script / CLI command, e.g. `tests/test_core.py` or `./run_sim.sh`]
+- <span style="color: #EBCB8B;">**Input Stimulus**</span>: [Description of input data, clocking, parameters, transactions, or payloads]
+- <span style="color: #EBCB8B;">**Monitored Outputs**</span>: [Specific return values, signals, registers, status codes, or metrics checked]
+- <span style="color: #EBCB8B;">**Test Scenarios**</span>:
+  1. [Happy path / nominal functional test scenario]
+  2. [Parametric sweep or boundary limits scenario]
+  3. [Stress, backpressure, or error injection scenario]
 
-- [ ] <span style="color: #EBCB8B;">**Phase 4: End-to-End Testing & Deployment**</span>
-  - [ ] Write integration test suite for end-to-end scenarios
-  - [ ] Set up CI/CD pipeline, monitoring dashboards, and alerting rules
+#### 3. Execution Results & Evolution:
+- <span style="color: #EBCB8B;">**Verdict**</span>: <span style="color: #4C566A;">**PENDING**</span> <!-- Update to <span style="color: #A3BE8C;">**PASSED (YYYY-MM-DD HH:MM:SS)**</span> upon completion -->
+- <span style="color: #EBCB8B;">**Key Metrics**</span>: [Target metrics, e.g. 0 errors, latency < 5 ms, WNS > 0.0 ns]
+- <span style="color: #EBCB8B;">**Changes Made to Pass**</span>: [Crucial retrospective notes on fixes, refactors, or pivots required during execution to achieve pass]
+- <span style="color: #EBCB8B;">**Evidence Anchor**</span>: [`backup_evidences.md#step-11-anchor`](backup_evidences.md#step-11-anchor)
+
+<br>
+
+### <span style="color: #81A1C1;">**5.2 Step 1.2: [Subsystem / Integration Milestone]**</span>
+
+#### 1. Implementation Scope:
+- Itemize files modified or created.
+- Itemize integration logic or external adapters implemented.
+
+#### 2. Verification Specification:
+- <span style="color: #EBCB8B;">**SUT**</span>: [Name of integrated pipeline / service]
+- <span style="color: #EBCB8B;">**Testbench & Runner**</span>: [Integration test suite / command]
+- <span style="color: #EBCB8B;">**Input Stimulus**</span>: [End-to-end transaction stream / multi-channel stimulus]
+- <span style="color: #EBCB8B;">**Monitored Outputs**</span>: [End-to-end data integrity / protocol conformance]
+- <span style="color: #EBCB8B;">**Test Scenarios**</span>:
+  1. [End-to-end pipeline convergence]
+  2. [Failure recovery and backpressure handling]
+
+#### 3. Execution Results & Evolution:
+- <span style="color: #EBCB8B;">**Verdict**</span>: <span style="color: #4C566A;">**PENDING**</span>
+- <span style="color: #EBCB8B;">**Key Metrics**</span>: [Target metrics]
+- <span style="color: #EBCB8B;">**Changes Made to Pass**</span>: [Pending execution]
+- <span style="color: #EBCB8B;">**Evidence Anchor**</span>: [`backup_evidences.md#step-12-anchor`](backup_evidences.md#step-12-anchor)
 
 ---
 
-## <span style="color: #88C0D0;">**6. Verification & Sign-Off Checklist**</span>
+## <span style="color: #88C0D0;">**6. Verification & Sign-Off Checklist (1-to-1 Mapping to Section 5)**</span>
 
-| <span style="color: #EBCB8B;">**Test / Acceptance Case**</span> | <span style="color: #EBCB8B;">**Target Criteria**</span> | <span style="color: #EBCB8B;">**Actual Result**</span> | <span style="color: #EBCB8B;">**Status**</span> |
-| :--- | :--- | :--- | :--- |
-| <span style="color: #EBCB8B;">**Unit Test Suite**</span> | All unit tests pass with zero failures | 100% passing across 42 test suites | <span style="color: #A3BE8C;">**YYYY-MM-DD HH:MM:SS**</span> |
-| <span style="color: #EBCB8B;">**Integration Flow**</span> | Happy path and edge case scenarios pass | Pending | <span style="color: #4C566A;">**Planned**</span> |
-| <span style="color: #EBCB8B;">**Performance SLA**</span> | p99 latency < 200ms under benchmark load | Pending | <span style="color: #4C566A;">**Planned**</span> |
+| <span style="color: #EBCB8B;">**Step #**</span> | <span style="color: #EBCB8B;">**Subsystem / Task**</span> | <span style="color: #EBCB8B;">**Implementation Scope**</span> | <span style="color: #EBCB8B;">**Primary Verification SUT & Runner**</span> | <span style="color: #EBCB8B;">**Key Pass Criteria**</span> | <span style="color: #EBCB8B;">**Status**</span> |
+| :---: | :--- | :--- | :--- | :--- | :---: |
+| <span style="color: #EBCB8B;">**Step 1.1**</span> | [Subsystem Initial Milestone] | [1-sentence summary of implementation scope] | **SUT**: [Target SUT]<br>**Runner**: [Runner script or testbench] | [Explicit quantitative pass criteria] | <span style="color: #4C566A;">**Planned (Pending Step 1.1)**</span> |
+| <span style="color: #EBCB8B;">**Step 1.2**</span> | [Subsystem Integration Milestone] | [1-sentence summary of implementation scope] | **SUT**: [Target SUT]<br>**Runner**: [Runner script or testbench] | [Explicit quantitative pass criteria] | <span style="color: #4C566A;">**Planned (Pending Step 1.2)**</span> |
 
 ---
 
