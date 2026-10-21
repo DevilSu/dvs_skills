@@ -142,6 +142,7 @@ Whenever DVS instructs the assistant to **add, modify, or update a rule**, the a
 | `RULE-EVID-001` | [`backup_evidences.md`](backup_evidences.md) | Mandatory empirical evidence logging in `blueprints/<subproject>/backup_evidences.md` after completing any implementation step. Shared across all phases. | **Active** |
 | `RULE-HW-001` | [`hardware_architecture.md`](hardware_architecture.md) | FPGA clock infrastructure decoupling, non-blocking real-time sensor streaming, and vendor IP catalog reuse. | **Active** |
 | `RULE-HYGIENE-001` | [`codebase_hygiene.md`](codebase_hygiene.md) | Mandatory immediate decommissioning of superseded artifacts upon refactoring, zero orphaned code, and cross-document reference sweeps. | **Active** |
+| `RULE-DIARY-001` | [`project_diary.md`](project_diary.md) | Mandatory append-only, immutable daily engineering journal (`blueprints/diary.md`) tracking real-world actions, failures, reroutes, and breakthroughs for post-project podcast synthesis. | **Active** |
 | `DIR-PLAN-001` | [`../skills/planning.md`](../skills/planning.md) | Mandatory interactive chat alignment and commentable `.md` artifacts before modifying plans. | **Active** |
 
 ---

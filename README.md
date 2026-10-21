@@ -14,7 +14,8 @@ dvs_skills/
 │   ├── repo_structure.md
 │   ├── backup_evidences.md
 │   ├── hardware_architecture.md
-│   └── codebase_hygiene.md
+│   ├── codebase_hygiene.md
+│   └── project_diary.md
 └── skills/
     ├── guide-create_a_plan.md
     ├── guide-hls_pipeline.md
@@ -26,6 +27,7 @@ dvs_skills/
 ## 📋 Rules & Development Standards
 
 - **[How to Talk to DVS (Root Rules Hub)](rules/how_to_talk_to_dvs.md)**: Master communication rule (>3 paragraphs in formatted editor tabs, zero unrendered LaTeX, closing prompts for plan updates, shortnames glossary `addr cmt` / `acp`) and the ingestion protocol for adding/updating future rules.
+- **[Project Diary & Narrative Engineering Journal Standard](rules/project_diary.md)**: Mandatory append-only, immutable daily engineering journal (`blueprints/diary.md`, `RULE-DIARY-001`) capturing real actions, failures, reroutes, and eureka moments for post-project podcast synthesis.
 - **[Codebase Hygiene & Obsolete Artifact Lifecycle Standard](rules/codebase_hygiene.md)**: Mandatory immediate decommissioning of superseded source files upon refactoring (`RULE-HYGIENE-001`), zero orphaned code, build tool collision prevention, and cross-document reference sweeps.
 - **[Subproject-Driven Repository Architecture Standard](rules/repo_structure.md)**: Mandatory tripartite architecture (`blueprints/`, `hw/`, `sw/`) isolating hardware/software co-design milestones into mirrored subprojects, modeled after `mic_arr_v2`.
 - **[FPGA Clock Distribution & Streaming Standard](rules/hardware_architecture.md)**: Mandatory clock infrastructure decoupling (leaf modules never synthesize clocks), non-blocking real-time physical sensor streaming, and vendor IP catalog reuse.
