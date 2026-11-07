@@ -1,3 +1,9 @@
+---
+trigger: always_on
+description: >-
+  FPGA clock infrastructure decoupling, non-blocking sensor streaming, and IP catalog reuse.
+---
+
 # FPGA Clock Distribution, Sensor Ingestion, & Streaming Architecture Standard
 
 | Field | Details |

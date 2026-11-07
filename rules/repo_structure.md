@@ -1,3 +1,9 @@
+---
+trigger: always_on
+description: >-
+  Standard tripartite Subproject-Driven Repository Architecture (blueprints/, hw/, sw/).
+---
+
 # Subproject-Driven Repository Architecture Standard
 
 | Field | Details |

@@ -1,3 +1,9 @@
+---
+trigger: always_on
+description: >-
+  Mandatory append-only, immutable daily engineering journal tracking real-world actions, failures, and breakthroughs.
+---
+
 # Project Diary & Narrative Engineering Journal Standard
 
 | Field | Details |

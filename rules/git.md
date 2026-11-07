@@ -1,3 +1,9 @@
+---
+trigger: always_on
+description: >-
+  Mandatory explicit confirmation before executing git commit or git push (authorized via acp).
+---
+
 # Git Commit and Push Confirmation Rule
 
 | Field | Details |

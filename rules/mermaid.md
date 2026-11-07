@@ -1,3 +1,9 @@
+---
+trigger: always_on
+description: >-
+  Mandatory syntax validation for Mermaid diagrams to prevent rendering failures.
+---
+
 # Mermaid Diagram Validation & Rendering Rule
 
 | Field | Details |

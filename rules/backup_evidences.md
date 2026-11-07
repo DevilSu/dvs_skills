@@ -1,3 +1,9 @@
+---
+trigger: always_on
+description: >-
+  Mandatory empirical evidence logging after completing any implementation step.
+---
+
 # Implementation Step Verification & Backup Evidence Standard
 
 | Field | Details |

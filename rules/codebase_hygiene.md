@@ -1,3 +1,9 @@
+---
+trigger: always_on
+description: >-
+  Mandatory decommissioning of superseded artifacts, zero orphaned code, and cross-document reference sweeps.
+---
+
 # Codebase Hygiene, Refactoring & Obsolete Artifact Lifecycle Standard
 
 | Field | Details |

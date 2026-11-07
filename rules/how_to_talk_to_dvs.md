@@ -1,3 +1,9 @@
+---
+trigger: always_on
+description: >-
+  Communication standards, 3-paragraph limit, zero unrendered LaTeX, plan update prompts, and DVS shortnames (addr cmt, acp).
+---
+
 # How to Talk to DVS (Rules Index & Interaction Protocol)
 
 | Field | Details |
@@ -111,21 +117,26 @@ Whenever DVS instructs the assistant to **add, modify, or update a rule**, the a
                         ▼
 ┌───────────────────────────────────────────────┐
 │ 3. Author / Update the Rule File              │
-│    Use standardized format (Meta table,       │
-│    Statement, Scope, Workflow, Verification)  │
+│    - Add YAML frontmatter (trigger: always_on)│
+│    - Standard format: Meta table, Statement,  │
+│      Scope, Workflow, and Verification        │
 └───────────────────────┬───────────────────────┘
                         │
                         ▼
 ┌───────────────────────────────────────────────┐
-│ 4. Update the Master Indexes                  │
+│ 4. Update Master Indexes & Verify Sync        │
 │    - Add rule link to `how_to_talk_to_dvs.md` │
 │    - Add rule link to `dvs_skills/README.md`  │
+│    - Verify Antigravity discovery (.agents/ & │
+│      global ~/.gemini/AGENTS.md)              │
 └───────────────────────┬───────────────────────┘
                         │
                         ▼
 ┌───────────────────────────────────────────────┐
-│ 5. Confirm with User before Committing        │
+│ 5. Commit and Push to Remote                  │
 │    Follow RULE-GIT-001 (Ask before commit/push│
+│    or execute immediately if authorized via   │
+│    user command 'acp')                        │
 └───────────────────────────────────────────────┘
 ```
 
