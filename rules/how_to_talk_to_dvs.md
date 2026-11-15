@@ -1,7 +1,7 @@
 ---
 trigger: always_on
 description: >-
-  Communication standards, 3-paragraph limit, zero unrendered LaTeX, plan update prompts, and DVS shortnames (addr cmt, acp).
+  Communication standards, 3-paragraph limit, KaTeX math rendering standard, plan update prompts, and DVS shortnames (addr cmt, acp).
 ---
 
 # How to Talk to DVS (Rules Index & Interaction Protocol)
@@ -11,6 +11,7 @@ description: >-
 | **Rule ID** | `RULE-TALK-001` |
 | **Topic** | Communication Standards, Editor Tab Presentation, & Rules Management Hub |
 | **Created** | 2026-10-04 |
+| **Modified** | 2026-11-11 |
 | **Status** | **Active / Mandatory** |
 
 ---
@@ -29,24 +30,21 @@ description: >-
 
 ---
 
-## 2. Core Formatting Rule: Zero Unrendered LaTeX & Pre-Response Rendering Audit
+## 2. Core Formatting Rule: KaTeX Math Rendering & Pre-Response Rendering Audit
 
 > [!IMPORTANT]
-> **Never output unrendered LaTeX delimiters or math syntax in chat responses or markdown documents.**
-> The editor does not render LaTeX math syntax (`$ ... $`, `$$ ... $$`, `\text{...}`, `\times`, `\pm`, `\approx`, etc.). Raw LaTeX symbols appear as broken code and are strictly forbidden.
+> **Render multi-term mathematical equations and derivations using valid KaTeX LaTeX math (`$$ ... $$` display blocks or `$ ... $` inline), NOT plain-text code fences (` ```text `), while guaranteeing zero broken or unrendered LaTeX syntax.**
+> Antigravity editor tabs and GitHub Markdown render KaTeX math natively. Mathematical equations should be typeset cleanly with KaTeX, whereas standalone engineering units, dimensions, and code identifiers remain in plain text or backticks.
 
 ### Formatting Rules:
-1. **Pre-Response Rendering Audit**:
-   - Before emitting any response or writing any markdown file, the assistant must scan the output to verify that zero unrendered LaTeX tokens exist.
-2. **Plain-Text Mathematical Equivalents**:
-   - Instead of `$25\text{ bit} \times 18\text{ bit}$`, write `25-bit x 18-bit`.
-   - Instead of `$\pm 0.25\text{ dB}$`, write `+-0.25 dB`.
-   - Instead of `$\sim 96\text{ dB}$`, write `~96 dB` or `approx 96 dB`.
-   - Instead of `$F_s = 96\text{ kHz}$`, write `F_s = 96 kHz`.
-   - Instead of `$\alpha = 1 - 2^{-10}$`, write `alpha = 1 - 2^(-10)`.
-   - Instead of `$120\text{ to }130\text{ dB SPL}$`, write `120 to 130 dB SPL`.
-3. **Dimensions, Frequencies, and Variables**:
-   - Always format numbers and engineering units using plain text or backticked inline code: `3.84 MHz`, `96 kHz`, `15 Hz`, `144 dB`, `24-bit`.
+1. **KaTeX Display Equations (`$$ ... $$`) for Formulas & Derivations**:
+   - Always place `$$` delimiters on their own lines with blank lines before and after the block so equations render cleanly as display math instead of ` ```text ` code blocks:
+     - Use standard KaTeX-compatible macros (`\frac{}{}`, `\dfrac{}{}`, `\operatorname{sinc}`, `\sum_{m=0}^{7}`, `\mathbf{}`, `\text{}`, `\begin{aligned} ... \end{aligned}`, `\begin{bmatrix} ... \end{bmatrix}`).
+   - Never place LaTeX math inside backticks (`` `$...$` ``) or ` ```text ` blocks when presenting equations, and never leave unmatched `$` characters in prose (escape literal currency dollars as `\$`).
+2. **Standalone Dimensions, Frequencies, and Engineering Units**:
+   - Format standalone numbers, frequencies, bit-widths, tolerances, and identifiers in prose and tables using clean plain text or backticked inline code: `3.84 MHz`, `96 kHz`, `15 Hz`, `144 dB`, `24-bit`, `+-0.25 dB`, `25-bit x 18-bit`.
+3. **Pre-Response Rendering Audit**:
+   - Before emitting any response or saving any markdown file, verify that all `$$ ... $$` and `$ ... $` blocks use valid KaTeX syntax with zero unsupported package macros or broken raw tokens.
 
 ---
 
@@ -146,7 +144,7 @@ Whenever DVS instructs the assistant to **add, modify, or update a rule**, the a
 
 | Rule ID | File | Description | Status |
 | :--- | :--- | :--- | :--- |
-| `RULE-TALK-001` | [`how_to_talk_to_dvs.md`](how_to_talk_to_dvs.md) | **(Root File)** Response length threshold (>3 paragraphs -> `.md` tab), zero unrendered LaTeX, plan update prompts, and DVS shortnames glossary (`addr cmt`, `acp`). | **Active** |
+| `RULE-TALK-001` | [`how_to_talk_to_dvs.md`](how_to_talk_to_dvs.md) | **(Root File)** Response length threshold (>3 paragraphs -> `.md` tab), KaTeX math rendering (`$$ ... $$` for equations), plan update prompts, and DVS shortnames glossary (`addr cmt`, `acp`). | **Active** |
 | `RULE-MERMAID-001` | [`mermaid.md`](mermaid.md) | Mandatory syntax validation for Mermaid diagrams (double-quoted special characters, quoted edge labels, clean subgraphs) to prevent rendering failures. | **Active** |
 | `RULE-GIT-001` | [`git.md`](git.md) | Mandatory explicit confirmation before executing `git commit` or `git push` (authorized via `acp`). | **Active** |
 | `RULE-REPO-001` | [`repo_structure.md`](repo_structure.md) | Standard tripartite Subproject-Driven Repository Architecture (`blueprints/`, `hw/`, `sw/`) modeled after `mic_arr_v2`. | **Active** |
@@ -158,7 +156,7 @@ Whenever DVS instructs the assistant to **add, modify, or update a rule**, the a
 
 ---
 
-## 8. Repository Link Standards
+## 8. Repository Link & Math Standards
 
 - All links within rules and documentation must be **strictly relative repository paths** (e.g. `rules/git.md`, `../skills/planning.md`) so they render seamlessly on GitHub and across local clones.
-- Math must be formatted as **plain text** without unrendered LaTeX delimiters (`$`, `$$`, `\frac`).
+- Multi-term mathematical equations and derivations must be formatted using valid **KaTeX display math (`$$ ... $$`)** rather than plain-text code blocks, with zero broken or unrendered LaTeX tokens.

@@ -36,7 +36,7 @@
 > <br>
 >
 > **3. Mandatory Pre-Submission Rendering Quality Check:**
-> The assistant **MUST verify formatting and rendering before showing any markdown document**. Strictly prohibit unrendered LaTeX math syntax (`$$...$$`, `$...$`, `\frac`, `\approx`, `\times`). Always write mathematical formulas and calculations in clean, readable plain text. Verify tables, ASCII diagrams, and code fences render flawlessly prior to presenting to the user.
+> The assistant **MUST verify formatting and rendering before showing any markdown document**. Render multi-term mathematical equations and derivations using valid KaTeX display math (`$$ ... $$` on standalone lines) rather than plain-text code blocks, while keeping standalone engineering units in clean plain text or backticks (`96 kHz`, `24-bit`). Verify tables, KaTeX equations, ASCII diagrams, and code fences render flawlessly with zero broken tokens prior to presenting to the user.
 >
 > <br>
 >
@@ -81,7 +81,7 @@ Whenever a user requests to plan a project, subproject, or phase:
 
 1. <span style="color: #EBCB8B;">**Step 1 - Scoping & Options Analysis in Commentable Format**</span>:
    - Formulate the proposal, architecture trade-offs, or option comparisons.
-   - Run a pre-submission rendering audit: guarantee zero LaTeX markers (`$`), verify plain-text math, and check table/diagram formatting.
+   - Run a pre-submission rendering audit: verify valid KaTeX `$$ ... $$` equations (zero broken tokens) and check table/diagram formatting.
    - Present the proposal as a commentable markdown document (`RequestFeedback: true`) so the user can leave inline comments on specific points.
 
 2. <span style="color: #EBCB8B;">**Step 2 - Interactive Alignment & Comment Resolution**</span>:
@@ -91,7 +91,7 @@ Whenever a user requests to plan a project, subproject, or phase:
 
 3. <span style="color: #EBCB8B;">**Step 3 - Write Markdown Specification Only After Approval**</span>:
    - Upon receiving the user's explicit confirmation or design choices, create or update the target `.md` document following [guide-create_a_plan.md](guide-create_a_plan.md).
-   - Use strictly relative paths, plain-text math, and Nord styling standards.
+   - Use strictly relative paths, rendered KaTeX math (`$$ ... $$`) for equations, and Nord styling standards.
 
 4. <span style="color: #EBCB8B;">**Step 4 - Review & Git Confirmation**</span>:
    - Present the created plan summary to the user.
